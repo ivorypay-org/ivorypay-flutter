@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ivorypay_flutter/ivorypay_flutter.dart';
-import 'package:ivorypay_flutter/model/Initiate_ivorypay_transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final String _platformVersion = 'Unknown';
-
   @override
   void initState() {
     super.initState();
@@ -56,7 +53,10 @@ class _MyAppState extends State<MyApp> {
                   ivoryService.run();
                 },
                 child: const Center(
-                  child: Text('Pay with Ivory'),
+                  child: Text(
+                    'Pay with Tiffany',
+                    style: TextStyle(fontSize: 50),
+                  ),
                 ),
               ),
               if (isLoading)

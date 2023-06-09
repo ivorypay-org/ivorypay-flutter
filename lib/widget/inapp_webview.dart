@@ -29,13 +29,51 @@ class InAppWebView extends StatefulWidget {
 }
 
 class InAppWebViewState extends State<InAppWebView> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  doneLoading(_) async {
+    _isLoading.value = false;
+    setState(() {});
+  }
+
+  late WebViewController webViewController = WebViewController();
+
+  startLoading(_) {
+    _isLoading.value = true;
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (value) {
+            if (value == 100) {
+              _isLoading.value = false;
+            }
+          },
+          onPageStarted: startLoading,
+          onPageFinished: doneLoading,
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.toString().contains('payment-status')) {
+              _handleNavigation('payment_completed');
+
+              return NavigationDecision.navigate;
+            }
+            if (request.url.toString().contains('https://ivorypay.io')) {
+              return NavigationDecision.navigate;
+            }
+
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url ?? ''));
   }
 
   /// These are instance variables declared in the `_InAppWebViewState` class.
@@ -67,39 +105,8 @@ class InAppWebViewState extends State<InAppWebView> {
           Padding(
             padding: const EdgeInsets.only(top: 80.0),
             child: Builder(builder: (BuildContext context) {
-              return WebView(
-                initialUrl: Uri.encodeFull(widget.url ?? 'https://ivorypay.io'),
-                javascriptMode: JavascriptMode.unrestricted,
-                onWebViewCreated: (WebViewController webViewController) {
-                  _controller.complete(webViewController);
-                  controllerGlobal = webViewController;
-                },
-                onPageStarted: (String url) {
-                  _isLoading.value = true;
-                },
-                onProgress: (value) {
-                  if (value == 100) {
-                    _isLoading.value = false;
-                  }
-                },
-                onPageFinished: (String url) {
-                  _isLoading.value = false;
-
-                  // setState(() => _isLoading = false);
-                },
-                gestureNavigationEnabled: true,
-                navigationDelegate: (action) {
-                  if (action.url.toString().contains('payment-status')) {
-                    _handleNavigation('payment_completed');
-
-                    return NavigationDecision.navigate;
-                  }
-                  if (action.url.toString().contains('https://ivorypay.io')) {
-                    return NavigationDecision.navigate;
-                  }
-
-                  return NavigationDecision.navigate;
-                },
+              return WebViewWidget(
+                controller: webViewController,
               );
             }),
           ),
