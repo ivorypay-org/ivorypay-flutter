@@ -122,7 +122,7 @@ class _InAppWebViewState extends State<InAppWebView> {
                     //   }
                     // });
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.transparent,
                   ),

@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  final String _platformVersion = 'Unknown';
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
 
                   serviceee.run();
                 },
-                child: Center(
+                child: const Center(
                   child: Text('Pay with Ivory'),
                 ),
               ),

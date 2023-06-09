@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -104,7 +103,7 @@ class IvorypayFlutter {
                                       Text(
                                         'Your transaction status is ${status?.toUpperCase().replaceAll('_', ' ')}',
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 40,
                                       ),
                                       Row(
@@ -118,7 +117,7 @@ class IvorypayFlutter {
                                               Navigator.of(context).pop();
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text(
+                                            child: const Text(
                                               'Yes',
                                               style:
                                                   TextStyle(color: Colors.red),
@@ -128,7 +127,7 @@ class IvorypayFlutter {
                                             onTap: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('No'),
+                                            child: const Text('No'),
                                           ),
                                         ],
                                       ),
@@ -251,7 +250,7 @@ class IvorypayFlutter {
   /// theme, the size and position of the widget, and the state of any ancestor
   /// widgets. In this case,
   void closeAfterTimer(BuildContext context) {
-    timer = Timer(Duration(seconds: 10), () {
+    timer = Timer(const Duration(seconds: 10), () {
       Navigator.of(context).pop();
 
       ScaffoldMessenger.of(context).showSnackBar(

@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ivorypay_flutter/ivorypay_flutter.dart';
 
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
