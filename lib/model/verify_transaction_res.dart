@@ -2,6 +2,9 @@
 /// message : "Verification successful"
 /// data : {"uuid":"2c8110ef-bd6f-4e33-9bd2-c054dc37468d","reference":"2RQUugQxy8TsdZjAXEEmeBGOo8sbQamy","cryptoTransactionHash":"mn4ebCGp1EejVRuh5cTCj1RQUB3UstuzkG5EZM9q2uj3peMFSKhbW9QZmVpiSEoKw55JSPva9fe3yXAe6fJzyfU","expectedAmountInCrypto":0.0541,"expectedAmountInUSD":0.0541,"expectedAmountInBaseFiat":40,"expectedAmountInBusinessPrimaryFiat":40,"receivedAmountInCrypto":0,"receivedAmountInUSD":0,"receivedAmountInBaseFiat":0,"receivedAmountInBusinessPrimaryFiat":0,"excessAmountReceivedInCrypto":0,"feeInCrypto":0.0005,"expectedAmountInCryptoPlusFee":0.0546,"crypto":"USDC","baseFiat":"NGN","businessPrimaryFiat":"NGN","baseFiatToUSDRate":740,"baseFiatToBusinessPrimaryFiatRate":1,"usdToCryptoRate":1.0000658391727435,"address":"GpY7TwJK9ny6BNR5xNZjxs11m1v9gHPjP7oeRhQUAYRs","metadata":null,"environment":"TEST","origin":"THIRD_PARTY","businessId":"01c1b237-d7c5-4998-8db5-e7d81a8ef741","userId":"2f560442-7c8a-44a3-92d3-a90bdd4b63a2","customerId":"27389c13-b394-41d8-8dfd-452ff93acc35","expiresAt":"2023-06-07T16:02:31.741Z","completedAt":"2023-06-07T16:02:53.896Z","status":"failed","failureReason":"No payment received","createdAtDateOnly":"2023-06-07","createdAt":"2023-06-07T15:52:16.741Z","customer":{"uuid":"27389c13-b394-41d8-8dfd-452ff93acc35","refCode":"chYaG1n0jM","firstName":null,"lastName":null,"email":"nwakasistephenifeanyi@gmail.com","phoneNumber":null,"totalSpendInUSD":0,"businessId":"01c1b237-d7c5-4998-8db5-e7d81a8ef741","userId":"2f560442-7c8a-44a3-92d3-a90bdd4b63a2","context":"TEST","createdAtDateOnly":"2023-06-05","createdAt":"2023-06-05T14:21:11.326Z"}}
 
+/// The `VerifyTransactionRes` class is a model for a response object that contains
+/// information about a transaction verification, including success status, message,
+/// and data.
 class VerifyTransactionRes {
   VerifyTransactionRes({
     this.success,
@@ -76,6 +79,7 @@ class VerifyTransactionRes {
 /// createdAt : "2023-06-07T15:52:16.741Z"
 /// customer : {"uuid":"27389c13-b394-41d8-8dfd-452ff93acc35","refCode":"chYaG1n0jM","firstName":null,"lastName":null,"email":"nwakasistephenifeanyi@gmail.com","phoneNumber":null,"totalSpendInUSD":0,"businessId":"01c1b237-d7c5-4998-8db5-e7d81a8ef741","userId":"2f560442-7c8a-44a3-92d3-a90bdd4b63a2","context":"TEST","createdAtDateOnly":"2023-06-05","createdAt":"2023-06-05T14:21:11.326Z"}
 
+/// The class "Data" has not been defined yet, so it cannot be summarized.
 class Data {
   Data({
     this.uuid,

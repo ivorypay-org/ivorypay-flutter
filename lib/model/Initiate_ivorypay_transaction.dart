@@ -4,6 +4,9 @@
 /// email : "nwakasistephenifeanyi@gmail.com"
 /// metadata : null
 
+/// The InitiateIvorypayTransaction class represents a transaction object with
+/// properties such as baseFiat, amount, crypto, email, authorization, and metadata,
+/// and includes methods for JSON serialization and copying.
 class InitiateIvorypayTransaction {
   InitiateIvorypayTransaction({
     this.baseFiat,

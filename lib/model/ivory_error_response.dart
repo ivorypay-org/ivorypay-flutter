@@ -6,6 +6,9 @@
 /// path : "/v1/transactions/2RQUugQxy8TsdZjAXEEmeBGOo8sbQam/verify"
 /// method : "GET"
 
+/// The IvoryErrorResponse class is a Dart class that represents an error response
+/// with properties such as success, message, statusCode, errors, timestamp, path,
+/// and method.
 class IvoryErrorResponse {
   IvoryErrorResponse({
       this.success, 

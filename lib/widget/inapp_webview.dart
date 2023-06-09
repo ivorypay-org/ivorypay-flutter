@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ivorypay_flutter/widget/checkout_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class InAppWebView extends StatefulWidget {
@@ -39,11 +38,27 @@ class _InAppWebViewState extends State<InAppWebView> {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
+  /// These are instance variables declared in the `_InAppWebViewState` class.
+  /// These are instance variables declared in the `_InAppWebViewState` class.
   final ValueNotifier<bool> _isLoading = ValueNotifier(true);
   final int _value = 0;
   final GlobalKey<FormState> dialogKey = GlobalKey<FormState>();
   late final WebViewController controllerGlobal;
 
+  /// This function returns a Scaffold with a WebView and a cancel button, and shows
+  /// a loading indicator while the WebView is loading.
+  ///
+  /// Args:
+  ///   context (BuildContext): The BuildContext is a required parameter in the
+  /// build method of a widget in Flutter. It represents the location of the widget
+  /// in the widget tree and is used to obtain information about the current theme,
+  /// media query, and other contextual information. It is typically used to build
+  /// child widgets or to access services such
+  ///
+  /// Returns:
+  ///   A `Scaffold` widget with a `Stack` as its body, containing a `WebView`
+  /// widget, a `Container` widget with a `Row` of `InkWell` widgets, and a
+  /// `Visibility` widget with a `CircularProgressIndicator`.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,6 +159,11 @@ class _InAppWebViewState extends State<InAppWebView> {
     );
   }
 
+  /// This function handles navigation for a given URL.
+  ///
+  /// Args:
+  ///   url (String): The `url` parameter is a string that represents the URL that
+  /// the function will handle for navigation purposes.
   _handleNavigation(String url) {
     if (url == 'payment_completed') {}
     widget.onCancel('Success');
