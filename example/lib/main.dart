@@ -35,19 +35,16 @@ class _MyAppState extends State<MyApp> {
             children: [
               InkWell(
                 onTap: () async {
-                  final serviceee = IvorypayFlutter(
+                  final ivoryService = IvorypayFlutter(
                     context: context,
                     data: InitiateIvorypayTransaction(
                       baseFiat: "NGN",
-                      amount: 40,
+                      amount: 4000,
                       crypto: "USDC",
                       email: "nwakasistephenifeanyi@gmail.com",
-                      authorization:
-                          'pk_Q0ka44CHNFHtrwfvzGwqYLrRRlqQoyfmLL6mZ1vqkHJV4P1WhgArKPDlJrwy1DQ6',
+                      authorization: 'PUBLIC_API_KEY',
                     ),
-                    onError: (value, e) {
-                      print('object');
-                    },
+                    onError: (value, e) {},
                     onSuccess: (res) {},
                     onLoading: (valueLoading) {
                       setState(() {
@@ -56,7 +53,7 @@ class _MyAppState extends State<MyApp> {
                     },
                   );
 
-                  serviceee.run();
+                  ivoryService.run();
                 },
                 child: const Center(
                   child: Text('Pay with Ivory'),

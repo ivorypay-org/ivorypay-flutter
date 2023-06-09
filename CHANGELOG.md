@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* This SDK allows you to receive cyptocurrency payments to your ivory pay account

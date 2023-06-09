@@ -25,10 +25,10 @@ class InAppWebView extends StatefulWidget {
   });
 
   @override
-  _InAppWebViewState createState() => _InAppWebViewState();
+  InAppWebViewState createState() => InAppWebViewState();
 }
 
-class _InAppWebViewState extends State<InAppWebView> {
+class InAppWebViewState extends State<InAppWebView> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 

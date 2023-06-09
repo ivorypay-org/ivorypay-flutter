@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ivorypay_flutter/constants/constants.dart';
@@ -71,8 +70,6 @@ class IvorypayFlutter {
         );
 
         final link = "$paymentLinkBaseUrl/${data.data?.reference}";
-
-        print(data.data?.reference);
 
         Future.delayed(Duration.zero, () {
           closeAfterTimer(context);
@@ -160,20 +157,12 @@ class IvorypayFlutter {
 
         return link;
       } else {
-        if (kDebugMode) {
-          print(response.statusCode.toString());
-          print(response.body.toString());
-        }
-
         onError!(true, response.body);
 
         return response.body.toString();
       }
     } catch (e) {
-      final value = e;
-
       onError!(true, e);
-      print(e.toString());
       return e.toString();
     } finally {
       onLoading!(false);
@@ -219,16 +208,7 @@ class IvorypayFlutter {
         });
 
         return data.data?.status;
-
-        print(data.data?.status);
-        print(data.data?.failureReason);
-        onSuccess!(data);
       } else {
-        if (kDebugMode) {
-          print(response.statusCode.toString());
-          print(response.body.toString());
-        }
-
         onError!(true, response.body);
       }
     } catch (e) {
