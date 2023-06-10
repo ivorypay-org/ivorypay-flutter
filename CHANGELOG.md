@@ -4,4 +4,11 @@
 
 ## 0.0.2
 
-* Added documentation comments 
+* Added documentation comments
+
+## 0.0.3
+
+* Updated documentation
+* ## 0.0.4
+
+* Updated documentation 

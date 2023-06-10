@@ -8,14 +8,52 @@ import 'package:ivorypay_flutter/model/transaction_response_dto.dart';
 import 'package:ivorypay_flutter/model/verify_transaction_res.dart';
 import 'package:ivorypay_flutter/widget/inapp_webview.dart';
 
+/// The above code is defining a constructor for a class called `IvorypayFlutter`.
+/// The constructor takes in several parameters including a required
+/// `BuildContext` object, a boolean `isDev` flag with a default value of `true`,
+/// a required `data` object, and optional callback functions for `onError`,
+/// `onSuccess`, and `onLoading`
+
 class IvorypayFlutter {
-  /// These are instance variables of the `IvorypayFlutter` class in Dart.
+  /// These are instance variables of the [IvorypayFlutter[ class in Dart.
   final bool isDev;
 
+  /// The above code is declaring a final variable named [context[ of type
+  /// [BuildContext[. It is not doing anything else as it is just a declaration and
+  /// not an executable code.
   final BuildContext context;
+
+  /// The above code is declaring a final variable named "data" of type
+  /// "InitiateIvorypayTransaction". The type "InitiateIvorypayTransaction" is
+  /// likely a custom class or data structure defined elsewhere in the code.
   final InitiateIvorypayTransaction data;
+
+  /// [final Function(bool, Object)? onError;[ is a nullable instance variable of
+  /// the [IvorypayFlutter[ class in Dart. It represents a function that takes in
+  /// two arguments: a boolean value and an object. The [?[ indicates that this
+  /// variable can be null, meaning it may or may not have a function assigned to
+  /// it. This function is called when an error occurs during the execution of the
+  /// [run()[ or [verifyStatus()[ functions. The boolean value indicates whether the
+  /// error is critical or not, and the object contains information about the error.
   final Function(bool, Object)? onError;
+
+  /// [final Function(VerifyTransactionRes)? onSuccess;[ is a nullable instance
+  /// variable of the [IvorypayFlutter[ class in Dart. It represents a function that
+  /// takes in a [VerifyTransactionRes[ object as an argument and returns nothing
+  /// ([void[). The [?[ indicates that this variable can be null, meaning it may or
+  /// may not have a function assigned to it. This function is called when the
+  /// [verifyStatus()[ function is successful and returns a [VerifyTransactionRes[
+  /// object. It allows the user of the [IvorypayFlutter[ class to define their own
+  /// custom behavior when a transaction is successfully verified.
   final Function(VerifyTransactionRes)? onSuccess;
+
+  /// [final Function(bool)? onLoading;[ is a nullable instance variable of the
+  /// [IvorypayFlutter[ class in Dart. It represents a function that takes in a
+  /// boolean value as an argument and returns nothing ([void[). The [?[ indicates
+  /// that this variable can be null, meaning it may or may not have a function
+  /// assigned to it. This function is called when the [run()[ function is executed
+  /// and the loading state changes. It allows the user of the [IvorypayFlutter[
+  /// class to define their own custom behavior when the loading state changes.
   final Function(bool)? onLoading;
 
   IvorypayFlutter({
@@ -31,19 +69,31 @@ class IvorypayFlutter {
   /// nullable timer variable in Dart.
   String _baseUrl() => isDev == true ? Constants.devURL : Constants.prodURL;
 
+  /// This is a private function in Dart that returns a payment link base URL if the
+  /// environment is set to development.
   String _paymentLinkBaseUrl() => isDev == true
       ? Constants.paymentLinkDevURL
       : Constants.paymentLinkProdURL;
 
+  /// The above code is declaring a [ValueNotifier[ object named [isLoading[ with a
+  /// boolean value of [false[. [ValueNotifier[ is a class in Dart that provides a
+  /// way to listen to changes to a value and notify listeners when the value
+  /// changes. In this case, [isLoading[ is likely being used to track whether a
+  /// certain process or operation is currently in progress (i.e. [isLoading[ is
+  /// [true[ when the process is running and [false[ when it is not).
   ValueNotifier<bool> isLoading = ValueNotifier(false);
 
+  /// The above code is declaring a nullable variable [timer[ of type [Timer[ in
+  /// Dart. The [Timer[ class is used to create a timer that runs a callback
+  /// function after a specified duration. The [?[ after the type [Timer[ indicates
+  /// that the variable can be null.
   Timer? timer;
 
   /// This function sends a POST request to a server with specific data and returns
   /// a payment link if successful.
   ///
   /// Returns:
-  ///   The method `run()` returns a `Future<String>`.
+  ///   The method [run()[ returns a [Future<String>[.
   Future<String> run() async {
     final baseUrl = _baseUrl();
     final paymentLinkBaseUrl = _paymentLinkBaseUrl();
@@ -70,6 +120,11 @@ class IvorypayFlutter {
           jsonDecode(response.body),
         );
 
+        /// The below code is creating a string variable called [link[ that
+        /// concatenates a base payment link URL with a reference ID obtained from
+        /// [data.data[. The [?.[ operator is used to safely access the [reference[
+        /// property of [data.data[ without causing a null reference exception if
+        /// [data.data[ is null.
         final link = "$paymentLinkBaseUrl/${data.data?.reference}";
 
         Future.delayed(Duration.zero, () {
@@ -178,7 +233,7 @@ class IvorypayFlutter {
   /// for a transaction that needs to be verified.
   ///
   /// Returns:
-  ///   a `Future<String?>`.
+  ///   a [Future<String?>[.
   Future<String?> verifyStatus(String ref) async {
     final baseUrl = _baseUrl();
 
@@ -244,22 +299,16 @@ class IvorypayFlutter {
   }
 }
 
-/// baseFiat : "NGN"
-/// amount : 40
-/// crypto : "USDC"
-/// email : "nwakasistephenifeanyi@gmail.com"
-/// metadata : null
-
-/// The InitiateIvorypayTransaction class represents a transaction object with
+/// The [InitiateIvorypayTransaction] class represents a transaction object with
 /// properties such as baseFiat, amount, crypto, email, authorization, and metadata,
 /// and includes methods for JSON serialization and copying.
 ///
 ///
 
-///To initiate a  transaction, a email address must be specified in the body of the request.
-///This email address will be used to create an entry in the Business Customer list of your business if it does not already exist.
-///So, typically, the email of the person making the payment is to be provided.
-///Every newly initiated transaction is only valid for 5 mins unless payment is received and a verification request is made to the IvoryPay API
+/// To initiate a  transaction, a email address must be specified in the body of the request.
+/// This [email] address will be used to create an entry in the Business Customer list of your business if it does not already exist.
+/// So, typically, the [email] of the person making the payment is to be provided.
+/// Every newly initiated transaction is only valid for 5 mins unless payment is received and a verification request is made to the IvoryPay API
 
 class InitiateIvorypayTransaction {
   InitiateIvorypayTransaction({
@@ -280,12 +329,23 @@ class InitiateIvorypayTransaction {
     metadata = json['metadata'];
   }
 
-  /// These are instance variables of the `InitiateIvorypayTransaction` class in
-  /// Dart, each with a nullable type (`String?`, `num?`, `dynamic?`). They
+  /// These are instance variables of the [InitiateIvorypayTransaction] They
   /// represent properties of a transaction object, such as the base fiat currency,
-  /// amount, cryptocurrency, email, authorization, and metadata. The `?` indicates
+  /// amount, cryptocurrency, email, authorization, and metadata. The [?[ indicates
   /// that these variables can be null, meaning they may or may not have a value
   /// assigned to them.
+  ///
+  /// [crypto]
+  ///The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC and SOL
+
+  /// [baseFiat]
+  /// The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR and KES
+
+  /// [amount]
+  /// The amount in the fiat currency which is to be charged in the specified.
+
+  /// [email]
+  /// Typically, the email of the person making the payment is to be provided.
 
   String? baseFiat;
   num? amount;

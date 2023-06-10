@@ -21,17 +21,66 @@ Keys [here](https://ivory-pay.gitbook.io/ivorypay-api-documentation/authorizatio
 Below are a few examples showcasing how you can use the library to implement payment in your Flutter
 app.
 
+## Getting Started
+
+To install, add it to your `pubspec.yaml` file:
+
+```
+dependencies:
+    ivorypay_flutter: <latest>
+
+```
+
+## How to use it
+
+```dart
+import 'package:ivorypay_flutter/ivorypay_flutter.dart';
+```
+
+```dart
+
+final ivoryService = IvorypayFlutter(
+  context: context,
+  data: InitiateIvorypayTransaction(
+    baseFiat: "NGN",
+    amount: 4000,
+    crypto: "USDC",
+    email: "nwakasistephenifeanyi@gmail.com",
+    authorization: 'PUBLIC_API_KEY',
+  ),
+  onError: (value, e) {},
+  onSuccess: (res) {},
+  onLoading: (valueLoading) {
+    setState(() {
+      isLoading = valueLoading;
+    });
+  },
+);
+
+ivoryService.run();
+
+```
+
 ## Parameters
 
+```dart
 [crypto*]
+
 The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC and SOL
 
 [baseFiat*]
 The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR and KES
 
-[amount]
-The amount in the fiat currency which is to be charged in the specified. 
+[amount*]
+The amount in the fiat currency which is to be charged in the specified.
 
 [email*]
-Typically, the email of the person making the payment is to be provided.
+Typically, the email of the person making the payment is to be
+provided
+.
+
+```
+
+
+
 

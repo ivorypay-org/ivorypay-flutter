@@ -1,7 +1,3 @@
-/// success : true
-/// message : "Transaction was initiated successfully"
-/// data : {"id":"43cf7729-9eda-4664-97c3-54cb277addad","email":"nwakasistephenifeanyi@gmail.com","address":"EzkKJVw91CgZnpBms5KHwh5RRyqfoAorHuQXLSyeb4wN","reference":"4yp7ye8vsea3gKio4A4g7pajPZvbS0wi","expectedAmountInUSD":0.0556,"expectedAmountInCrypto":0.0556,"feeInCrypto":0.0006,"feeInUSD":0.000556,"expectedAmountWithFeeInCrypto":0.0562,"crypto":"USDC","baseFiat":"NGN","baseFiatToUSDRate":720,"usdToCryptoRate":1.000166817166604}
-
 /// The TransactionResponseDto class is a data transfer object that represents a
 /// response from a transaction, including success status, message, and data.
 class TransactionResponseDto {
@@ -42,20 +38,6 @@ class TransactionResponseDto {
     return map;
   }
 }
-
-/// id : "43cf7729-9eda-4664-97c3-54cb277addad"
-/// email : "nwakasistephenifeanyi@gmail.com"
-/// address : "EzkKJVw91CgZnpBms5KHwh5RRyqfoAorHuQXLSyeb4wN"
-/// reference : "4yp7ye8vsea3gKio4A4g7pajPZvbS0wi"
-/// expectedAmountInUSD : 0.0556
-/// expectedAmountInCrypto : 0.0556
-/// feeInCrypto : 0.0006
-/// feeInUSD : 0.000556
-/// expectedAmountWithFeeInCrypto : 0.0562
-/// crypto : "USDC"
-/// baseFiat : "NGN"
-/// baseFiatToUSDRate : 720
-/// usdToCryptoRate : 1.000166817166604
 
 /// The above class defines a data model for a transaction with various properties
 /// such as ID, email, address, expected amount in USD and crypto, fees, and
