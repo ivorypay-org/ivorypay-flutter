@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unused_field
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -55,7 +53,7 @@ class InAppWebView extends StatefulWidget {
   /// actions.
   final Function(String) onCancel;
 
-  InAppWebView({
+  const InAppWebView({
     this.url,
     this.from,
     this.showHome = false,
@@ -155,10 +153,6 @@ class InAppWebViewState extends State<InAppWebView> {
   /// changes. In this case, [_isLoading[ is used to track whether the WebView is
   /// currently loading a page or not, and the UI is updated to show a loading
   /// indicator when [_isLoading[ is [true[.
-  /// [final int _value = 0;[ is declaring an instance variable [_value[ of type
-  /// [int[ and initializing it to [0[. However, it is not being used anywhere in
-  /// the code and can be removed.
-  final int _value = 0;
 
   /// [final GlobalKey<FormState> dialogKey = GlobalKey<FormState>();[ is creating a
   /// [GlobalKey[ object that is used to uniquely identify a [FormState[ object.
