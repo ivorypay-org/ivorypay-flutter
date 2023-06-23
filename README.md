@@ -45,7 +45,7 @@ final ivoryService = IvorypayFlutter(
     baseFiat: "NGN",
     amount: 4000,
     crypto: "USDC",
-    email: "nwakasistephenifeanyi@gmail.com",
+    email: 'EMAIL',
     authorization: 'PUBLIC_API_KEY',
   ),
   onError: (value, e) {},

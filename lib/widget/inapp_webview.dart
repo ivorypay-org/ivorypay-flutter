@@ -54,6 +54,7 @@ class InAppWebView extends StatefulWidget {
   final Function(String) onCancel;
 
   const InAppWebView({
+    super.key,
     this.url,
     this.from,
     this.showHome = false,
@@ -128,6 +129,7 @@ class InAppWebViewState extends State<InAppWebView> {
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.toString().contains('payment-status')) {
+              print(request.url);
               _handleNavigation('payment_completed');
 
               return NavigationDecision.navigate;
@@ -191,7 +193,7 @@ class InAppWebViewState extends State<InAppWebView> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 80.0),
+            padding: const EdgeInsets.only(top: 25.0),
             child: Builder(builder: (BuildContext context) {
               return WebViewWidget(
                 controller: webViewController,
@@ -226,11 +228,9 @@ class InAppWebViewState extends State<InAppWebView> {
                   onTap: () {
                     _handleNavigation('');
                   },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
+                  child: const Icon(
+                    Icons.cancel_outlined,
+                    color: Colors.red,
                   ),
                 ),
               ],
@@ -261,6 +261,6 @@ class InAppWebViewState extends State<InAppWebView> {
   /// the function will handle for navigation purposes.
   _handleNavigation(String url) {
     if (url == 'payment_completed') {}
-    widget.onCancel('Success');
+    widget.onCancel('payment_completed');
   }
 }

@@ -60,9 +60,9 @@ class IvorypayFlutter {
     required this.context,
     this.isDev = true,
     required this.data,
-    this.onError,
-    this.onSuccess,
-    this.onLoading,
+    required this.onError,
+    required this.onSuccess,
+    required this.onLoading,
   });
 
   /// This code defines two private functions, a boolean value notifier, and a
@@ -140,7 +140,7 @@ class IvorypayFlutter {
                     },
                     onCancel: (msg) async {
                       final status =
-                          await verifyStatus(data.data?.reference ?? '');
+                          await verifyStatus(data.data?.reference ?? '', msg);
 
                       if (status != 'success') {
                         Future.delayed(Duration.zero, () {
@@ -167,6 +167,9 @@ class IvorypayFlutter {
                                             onTap: () {
                                               timer?.cancel();
 
+                                              onError!(true,
+                                                  'Transaction Cancelled');
+
                                               Navigator.of(context).pop();
                                               Navigator.of(context).pop();
                                             },
@@ -189,6 +192,12 @@ class IvorypayFlutter {
                                 );
                               });
                         });
+                      } else {
+                        if (msg.isEmpty) {
+                          Future.delayed(Duration.zero, () {
+                            Navigator.of(context).pop();
+                          });
+                        }
                       }
                     },
                   ),
@@ -234,7 +243,7 @@ class IvorypayFlutter {
   ///
   /// Returns:
   ///   a [Future<String?>[.
-  Future<String?> verifyStatus(String ref) async {
+  Future<String?> verifyStatus(String ref, String msg) async {
     final baseUrl = _baseUrl();
 
     try {
@@ -252,16 +261,14 @@ class IvorypayFlutter {
           jsonDecode(response.body),
         );
 
-        Future.delayed(Duration.zero, () {
-          if (data.data?.status == 'success') {
-            timer?.cancel();
+        if (data.data?.status == 'success') {
+          timer?.cancel();
+          isLoading.value = false;
+          Future.delayed(const Duration(seconds: 2), () {
             Navigator.of(context).pop();
-          }
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                  data.data?.status?.toUpperCase().replaceAll('_', ' ') ??
-                      '')));
-        });
+            onSuccess!(data);
+          });
+        }
 
         return data.data?.status;
       } else {
@@ -286,15 +293,17 @@ class IvorypayFlutter {
   /// theme, the size and position of the widget, and the state of any ancestor
   /// widgets. In this case,
   void closeAfterTimer(BuildContext context) {
-    timer = Timer(const Duration(seconds: 10), () {
+    timer = Timer(const Duration(minutes: 10), () {
       Navigator.of(context).pop();
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Timed Out!!!, Please try agian'),
+          content: Text('Timed Out!!!, Please try again'),
           backgroundColor: Colors.red,
         ),
       );
+
+      onError!(true, 'Timed Out!!!, Please try again');
     });
   }
 }
@@ -365,3 +374,59 @@ class InitiateIvorypayTransaction {
     return map;
   }
 }
+
+/// The IvorypayButton class is a stateless widget that displays an image button with two options and
+/// executes a callback function when tapped.
+
+class IvorypayButton extends StatelessWidget {
+  const IvorypayButton(
+      {super.key, this.option = IvorypayButtonOption.one, required this.onTap});
+
+  /// The above code is declaring a class with two properties: [option] of type [IvorypayButtonOption]
+  /// and [onTap] of type [VoidCallback]. The purpose of this class is not clear without additional
+  /// context, but it seems to be related to a button component that can be customized with different
+  /// options and has an [onTap] callback function.
+  final IvorypayButtonOption option;
+  final VoidCallback onTap;
+
+  static const optionOne =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/ivqluefmzqeotiwzevfo';
+  static const optionTwo =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/pmxsqpcjgkfsu0lpv5f0';
+  @override
+  Widget build(BuildContext context) {
+    /// The above code is creating a GestureDetector widget that responds to user taps and displays an
+    /// image based on the selected option. If the option is IvorypayButtonOption.one, it displays an
+    /// image from the URL specified in optionOne. If the option is IvorypayButtonOption.two, it displays
+    /// an image from the URL specified in optionTwo. The images are displayed within a ClipRRect widget
+    /// with rounded corners.
+    return GestureDetector(
+      onTap: onTap,
+      child: Builder(builder: (context) {
+        if (option == IvorypayButtonOption.one) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              optionOne,
+              width: double.maxFinite,
+              height: 60,
+              fit: BoxFit.fitWidth,
+            ),
+          );
+        } else {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              optionTwo,
+              width: double.maxFinite,
+              height: 60,
+              fit: BoxFit.fitWidth,
+            ),
+          );
+        }
+      }),
+    );
+  }
+}
+
+enum IvorypayButtonOption { one, two }

@@ -1,6 +1,6 @@
 name: ivorypay_flutter
 description: Ivorypay Flutter SDK Demonstrates to allow you receive cyprto payments in Africa
-version: 0.0.4
+version: 0.0.6
 homepage: https://github.com/ivorypay-org/ivorypay-flutter
 
 environment:
@@ -44,9 +44,9 @@ flutter:
         pluginClass: IvorypayFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - images/ivory_button_1.png
+    - images/ivory_button_2.png
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
