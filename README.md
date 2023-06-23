@@ -31,56 +31,95 @@ dependencies:
 
 ```
 
-## How to use it
+## Required Parameters
 
-```dart
-import 'package:ivorypay_flutter/ivorypay_flutter.dart';
-```
+The following parameters are required for SDK initialization:
 
-```dart
+- `crypto`: The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC, and SOL.
 
-final ivoryService = IvorypayFlutter(
-  context: context,
-  data: InitiateIvorypayTransaction(
-    baseFiat: "NGN",
-    amount: 4000,
-    crypto: "USDC",
-    email: 'EMAIL',
-    authorization: 'PUBLIC_API_KEY',
-  ),
-  onError: (value, e) {},
-  onSuccess: (res) {},
-  onLoading: (valueLoading) {
-    setState(() {
-      isLoading = valueLoading;
-    });
-  },
-);
+- `baseFiat`: The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR, and KES.
 
-ivoryService.run();
+- `amount`: The amount in the fiat currency which is to be charged in the specified cryptocurrency.
 
-```
+- `email`: The email of the person making the payment.
 
-## Parameters
+Make sure to provide values for these parameters when initializing the SDK to ensure proper functionality.
 
-```dart
-[crypto*]
+## SDK Initialization
 
-The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC and SOL
+There are two options to initialize the SDK:
 
-[baseFiat*]
-The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR and KES
+1. Using the provided button:
 
-[amount*]
-The amount in the fiat currency which is to be charged in the specified.
+   ```dart
+   import 'package:your_package_name/your_package_name.dart';
 
-[email*]
-Typically, the email of the person making the payment is to be
-provided
-.
+   // Create an Ivorypay button widget
+   final button = IvorypayButton(
+     option: IvorypayButtonOption.two,
+     onTap: () async {
+       final ivoryService = IvorypayFlutter(
+         context: context,
+         data: InitiateIvorypayTransaction(
+           baseFiat: "NGN",
+           amount: int.tryParse(amountCtrl.text.trim()),
+           crypto: crypto.text,
+           email: email.text,
+           authorization: authCtrl.text,
+         ),
+         onError: (value, e) {
+           ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(content: Text(e.toString())));
+         },
+         onSuccess: (res) {
+           ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(content: Text(res.toString())));
+         },
+         onLoading: (valueLoading) {
+           setState(() {
+             isLoading = valueLoading;
+           });
+         },
+       );
 
-```
+       ivoryService.run();
+     },
+   );
 
+   // Add the button to your UI
+   // ...
+   ```
 
+   ![Ivorypay Button]
 
+   Clicking the button will trigger the `onTap` callback, where you can create an instance of `IvorypayFlutter` and initialize the SDK with the specified parameters.
 
+2. Calling the function directly:
+
+   ```dart
+   import 'package:your_package_name/your_package_name.dart';
+
+   final ivoryService = IvorypayFlutter(
+     context: context,
+     data: InitiateIvorypayTransaction(
+       baseFiat: "NGN",
+       amount: 4000,
+       crypto: "USDC",
+       email: "nwakasistephenifeanyi@gmail.com",
+       authorization: 'PUBLIC_API_KEY',
+     ),
+     onError: (value, e) {},
+     onSuccess: (res) {},
+     onLoading: (valueLoading) {
+       setState(() {
+         isLoading = valueLoading;
+       });
+     },
+   );
+
+   ivoryService.run();
+   ```
+
+   You can call the `IvorypayFlutter` constructor directly and initialize the SDK with the desired parameters without using the provided button.
+
+Choose the option that suits your needs and integrate it into your code accordingly.

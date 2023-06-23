@@ -129,7 +129,7 @@ class InAppWebViewState extends State<InAppWebView> {
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.toString().contains('payment-status')) {
-              print(request.url);
+              // print(request.url);
               _handleNavigation('payment_completed');
 
               return NavigationDecision.navigate;

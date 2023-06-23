@@ -1,6 +1,6 @@
 name: ivorypay_flutter
 description: Ivorypay Flutter SDK Demonstrates to allow you receive cyprto payments in Africa
-version: 0.0.6
+version: 0.0.8
 homepage: https://github.com/ivorypay-org/ivorypay-flutter
 
 environment:

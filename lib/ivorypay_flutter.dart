@@ -319,7 +319,14 @@ class IvorypayFlutter {
 /// So, typically, the [email] of the person making the payment is to be provided.
 /// Every newly initiated transaction is only valid for 5 mins unless payment is received and a verification request is made to the IvoryPay API
 
+/// Represents an Ivorypay transaction object used for initiating a payment.
 class InitiateIvorypayTransaction {
+  /// Creates an [InitiateIvorypayTransaction] object.
+  ///
+  /// The [baseFiat], [amount], [crypto], [email], [authorization], and [metadata]
+  /// parameters are optional and can be null. These properties represent
+  /// different attributes of a transaction, such as the base fiat currency,
+  /// amount, cryptocurrency, email, authorization, and metadata.
   InitiateIvorypayTransaction({
     this.baseFiat,
     this.amount,
@@ -329,6 +336,11 @@ class InitiateIvorypayTransaction {
     this.metadata,
   });
 
+  /// Creates an [InitiateIvorypayTransaction] object from a JSON dynamic data.
+  ///
+  /// This constructor is used to create an instance of [InitiateIvorypayTransaction]
+  /// from JSON data. The [json] parameter should be a dynamic object containing
+  /// the transaction data in JSON format.
   InitiateIvorypayTransaction.fromJson(dynamic json) {
     baseFiat = json['baseFiat'];
     amount = json['amount'];
@@ -338,31 +350,45 @@ class InitiateIvorypayTransaction {
     metadata = json['metadata'];
   }
 
-  /// These are instance variables of the [InitiateIvorypayTransaction] They
-  /// represent properties of a transaction object, such as the base fiat currency,
-  /// amount, cryptocurrency, email, authorization, and metadata. The [?[ indicates
-  /// that these variables can be null, meaning they may or may not have a value
-  /// assigned to them.
+  /// The cryptocurrency in which the amount is to be charged.
   ///
-  /// [crypto]
-  ///The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC and SOL
-
-  /// [baseFiat]
-  /// The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR and KES
-
-  /// [amount]
-  /// The amount in the fiat currency which is to be charged in the specified.
-
-  /// [email]
-  /// Typically, the email of the person making the payment is to be provided.
-
-  String? baseFiat;
-  num? amount;
+  /// Supported currencies are USDT, USDC, and SOL.
+  ///
+  /// Can be null.
   String? crypto;
+
+  /// The fiat currency of the amount to be charged.
+  ///
+  /// Supported fiats are NGN, GHS, ZAR, and KES.
+  ///
+  /// Can be null.
+  String? baseFiat;
+
+  /// The amount in the fiat currency which is to be charged.
+  ///
+  /// Can be null.
+  num? amount;
+
+  /// The email of the person making the payment.
+  ///
+  /// Typically provided.
+  ///
+  /// Can be null.
   String? email;
+
+  /// The authorization string for the transaction.
+  ///
+  /// Can be null.
   String? authorization;
+
+  /// Additional metadata associated with the transaction.
+  ///
+  /// Can be null.
   dynamic metadata;
 
+  /// Converts the [InitiateIvorypayTransaction] object to a JSON map.
+  ///
+  /// Returns a map representation of the transaction object in JSON format.
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['baseFiat'] = baseFiat;
@@ -378,28 +404,38 @@ class InitiateIvorypayTransaction {
 /// The IvorypayButton class is a stateless widget that displays an image button with two options and
 /// executes a callback function when tapped.
 
+/// A customizable button widget for Ivorypay integration.
+///
+/// This widget allows you to display a button with different options and
+/// specify an [onTap] callback function to handle the button tap event.
 class IvorypayButton extends StatelessWidget {
-  const IvorypayButton(
-      {super.key, this.option = IvorypayButtonOption.one, required this.onTap});
+  /// Creates an [IvorypayButton] widget.
+  ///
+  /// The [option] parameter specifies the button style option to use,
+  /// and the [onTap] parameter is the callback function to be called
+  /// when the button is tapped.
+  const IvorypayButton({
+    Key? key,
+    this.option = IvorypayButtonOption.one,
+    required this.onTap,
+  }) : super(key: key);
 
-  /// The above code is declaring a class with two properties: [option] of type [IvorypayButtonOption]
-  /// and [onTap] of type [VoidCallback]. The purpose of this class is not clear without additional
-  /// context, but it seems to be related to a button component that can be customized with different
-  /// options and has an [onTap] callback function.
+  /// The style option for the Ivorypay button.
+  ///
+  /// Use [IvorypayButtonOption.one] for the first style option,
+  /// and [IvorypayButtonOption.two] for the second style option.
   final IvorypayButtonOption option;
+
+  /// The callback function to be called when the button is tapped.
   final VoidCallback onTap;
 
   static const optionOne =
       'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/ivqluefmzqeotiwzevfo';
   static const optionTwo =
       'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/pmxsqpcjgkfsu0lpv5f0';
+
   @override
   Widget build(BuildContext context) {
-    /// The above code is creating a GestureDetector widget that responds to user taps and displays an
-    /// image based on the selected option. If the option is IvorypayButtonOption.one, it displays an
-    /// image from the URL specified in optionOne. If the option is IvorypayButtonOption.two, it displays
-    /// an image from the URL specified in optionTwo. The images are displayed within a ClipRRect widget
-    /// with rounded corners.
     return GestureDetector(
       onTap: onTap,
       child: Builder(builder: (context) {
@@ -429,4 +465,14 @@ class IvorypayButton extends StatelessWidget {
   }
 }
 
-enum IvorypayButtonOption { one, two }
+/// The available options for the Ivorypay button.
+///
+/// Use [IvorypayButtonOption.one] or [IvorypayButtonOption.two]
+/// to specify the desired button style.
+enum IvorypayButtonOption {
+  /// The first style option.
+  one,
+
+  /// The second style option.
+  two,
+}
