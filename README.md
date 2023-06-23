@@ -4,10 +4,14 @@ Demonstrates how to use the ivorypay_flutter plugin.
 
 ## Getting Started
 
-///To initiate a transaction, a email address must be specified in the body of the request. ///This
+To initiate a transaction, a email address must be specified in the body of the request. ///This
 email address will be used to create an entry in the Business Customer list of your business if it
-does not already exist. ///So, typically, the email of the person making the payment is to be
-provided. ///Every newly initiated transaction is only valid for 5 mins unless payment is received
+does not already exist.
+
+So, typically, the email of the person making the payment is to be
+provided.
+
+Every newly initiated transaction is only valid for 5 mins unless payment is received
 and a verification request is made to the IvoryPay API
 
 ### Public Key
@@ -35,15 +39,18 @@ dependencies:
 
 The following parameters are required for SDK initialization:
 
-- `crypto`: The cryptocurrency in which the amount is to be charged. Supported currencies are USDT, USDC, and SOL.
+- `crypto`: The cryptocurrency in which the amount is to be charged. Supported currencies are USDT,
+  USDC, and SOL.
 
-- `baseFiat`: The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR, and KES.
+- `baseFiat`: The fiat currency of the amount to be charged. Supported fiats are NGN, GHS, ZAR, and
+  KES.
 
 - `amount`: The amount in the fiat currency which is to be charged in the specified cryptocurrency.
 
 - `email`: The email of the person making the payment.
 
-Make sure to provide values for these parameters when initializing the SDK to ensure proper functionality.
+Make sure to provide values for these parameters when initializing the SDK to ensure proper
+functionality.
 
 ## SDK Initialization
 
@@ -52,7 +59,7 @@ There are two options to initialize the SDK:
 1. Using the provided button:
 
    ```dart
-   import 'package:your_package_name/your_package_name.dart';
+   import 'package:ivorypay_flutter/ivorypay_flutter.dart';
 
    // Create an Ivorypay button widget
    final button = IvorypayButton(
@@ -92,12 +99,13 @@ There are two options to initialize the SDK:
 
    ![Ivorypay Button]
 
-   Clicking the button will trigger the `onTap` callback, where you can create an instance of `IvorypayFlutter` and initialize the SDK with the specified parameters.
+   Clicking the button will trigger the `onTap` callback, where you can create an instance
+   of `IvorypayFlutter` and initialize the SDK with the specified parameters.
 
 2. Calling the function directly:
 
    ```dart
-   import 'package:your_package_name/your_package_name.dart';
+   import 'package:ivorypay_flutter/ivorypay_flutter.dart';
 
    final ivoryService = IvorypayFlutter(
      context: context,
@@ -120,6 +128,7 @@ There are two options to initialize the SDK:
    ivoryService.run();
    ```
 
-   You can call the `IvorypayFlutter` constructor directly and initialize the SDK with the desired parameters without using the provided button.
+   You can call the `IvorypayFlutter` constructor directly and initialize the SDK with the desired
+   parameters without using the provided button.
 
 Choose the option that suits your needs and integrate it into your code accordingly.

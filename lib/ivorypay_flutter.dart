@@ -430,9 +430,9 @@ class IvorypayButton extends StatelessWidget {
   final VoidCallback onTap;
 
   static const optionOne =
-      'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/ivqluefmzqeotiwzevfo';
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1687542436/Button_option_1_divjjp.png';
   static const optionTwo =
-      'https://res.cloudinary.com/dxfwzjz4k/image/upload/f_auto,q_auto/v1/ivorypay_flutter/pmxsqpcjgkfsu0lpv5f0';
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1687542478/Button_option_2_qvgrxk.png';
 
   @override
   Widget build(BuildContext context) {

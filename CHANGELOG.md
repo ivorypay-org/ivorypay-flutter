@@ -29,3 +29,7 @@
 ## 0.0.8
 
 - Added button documentation
+
+## 0.0.8
+
+- Updated pay with crypto button options
