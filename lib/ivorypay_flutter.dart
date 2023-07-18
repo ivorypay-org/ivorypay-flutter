@@ -444,7 +444,7 @@ class IvorypayButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
               optionOne,
-              width: double.maxFinite,
+              width: (double.maxFinite < 320) ? double.maxFinite : 320,
               height: 60,
               fit: BoxFit.fitWidth,
             ),
@@ -454,7 +454,7 @@ class IvorypayButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
               optionTwo,
-              width: double.maxFinite,
+              width: (double.maxFinite < 320) ? double.maxFinite : 320,
               height: 60,
               fit: BoxFit.fitWidth,
             ),

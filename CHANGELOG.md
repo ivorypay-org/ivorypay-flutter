@@ -33,3 +33,9 @@
 ## 0.0.9
 
 - Updated pay with crypto button options
+
+- ## 0.0.10
+
+- Added web support
+
+

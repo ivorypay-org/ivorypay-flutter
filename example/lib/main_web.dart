@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ivorypay_flutter/ivorypay_flutter.dart';
+import 'package:ivorypay_flutter/ivorypay_flutter_alt_web.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,9 @@ class _MyAppState extends State<MyApp> {
   final crypto = TextEditingController();
   final email = TextEditingController();
   final authCtrl = TextEditingController();
+
+  ///Add this initialization for flutter web
+  final ivorypayWebService = IvorypayFlutterWeb();
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +103,9 @@ class _MyAppState extends State<MyApp> {
                     IvorypayButton(
                       option: IvorypayButtonOption.two,
                       onTap: () async {
-                        final ivoryService = IvorypayFlutter(
+                        ///Flutter Web only implementation
+                        await ivorypayWebService.run(
+                          isDev: true,
                           context: context,
                           data: InitiateIvorypayTransaction(
                             baseFiat: "NGN",
@@ -123,8 +129,6 @@ class _MyAppState extends State<MyApp> {
                             });
                           },
                         );
-
-                        ivoryService.run();
                       },
                     ),
                     // InkWell(

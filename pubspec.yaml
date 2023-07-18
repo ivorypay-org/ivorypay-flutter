@@ -1,6 +1,6 @@
 name: ivorypay_flutter
 description: Ivorypay Flutter SDK to allow you receive crypto payments in Africa
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/ivorypay-org/ivorypay-flutter
 
 environment:
@@ -10,9 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   http: ^1.0.0
   webview_flutter: ^4.2.2
-
+  url_launcher: ^6.1.12
+  plugin_platform_interface: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +45,9 @@ flutter:
         pluginClass: IvorypayFlutterPlugin
       ios:
         pluginClass: IvorypayFlutterPlugin
+      web:
+        pluginClass: IvorypayFlutterWeb
+        fileName: ivorypay_flutter_alt_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   assets:

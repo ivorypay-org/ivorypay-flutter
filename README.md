@@ -54,7 +54,7 @@ functionality.
 
 ## SDK Initialization
 
-There are two options to initialize the SDK:
+There are two options to initialize the SDK for iOS and Android Platforms:
 
 1. Using the provided button:
 
@@ -125,10 +125,31 @@ There are two options to initialize the SDK:
      },
    );
 
-   ivoryService.run();
+   ivoryService.run()
    ```
 
    You can call the `IvorypayFlutter` constructor directly and initialize the SDK with the desired
    parameters without using the provided button.
 
 Choose the option that suits your needs and integrate it into your code accordingly.
+
+For web initialization use this function instead, the Ivorypay button widget as described above can
+be used
+to call this function
+
+1. initialize the pulgin
+
+```dart
+
+///Add this initialization for flutter web
+final ivorypayWebService = IvorypayFlutterWeb();
+
+
+  ```
+
+2. call the ivorypayWebService above.
+
+This code snippet demonstrates the usage of the `ivorypayWebService.run` method for initiating an
+Ivorypay transaction in a Flutter application with the required parameters
+
+You can also call verifyStatus to verify the payment was successfull 
