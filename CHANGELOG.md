@@ -34,8 +34,11 @@
 
 - Updated pay with crypto button options
 
-- ## 0.0.10
+- ## 0.0.10+1
 
 - Added web support
+- ## 0.0.10+1
+
+- Updated .run function for web service
 
 
